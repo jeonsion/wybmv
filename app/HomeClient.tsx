@@ -20,7 +20,7 @@ const noGifEmbeds: TenorGif[] = [
 ];
 
 const successPostId = "8495720813740986394";
-const githubUrl = "https://github.com/jeonsion";
+const githubUrl = "https://github.com/jeonsion/wybmv";
 
 const noMessages = [
   "Please reconsider...",
@@ -130,7 +130,23 @@ export default function HomeClient({ initialFrom = "" }: HomeClientProps) {
       setCountdown(getNextValentineCountdown());
     }, 1000);
 
-    return () => window.clearInterval(timer);
+    const onKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const tagName = target?.tagName?.toLowerCase();
+      const isTyping = tagName === "input" || tagName === "textarea" || target?.isContentEditable;
+      if (isTyping) return;
+
+      if (event.key.toLowerCase() === "g") {
+        window.open(githubUrl, "_blank", "noopener,noreferrer");
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, []);
 
   const gifStageIndex = Math.min(noCount, noGifEmbeds.length - 1);
@@ -200,6 +216,7 @@ export default function HomeClient({ initialFrom = "" }: HomeClientProps) {
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-slate-300 bg-slate-700 px-4 py-1.5 text-sm font-bold text-white"
+              title="Shortcut: G"
             >
               GitHub
             </a>
