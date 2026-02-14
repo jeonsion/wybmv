@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"]
+        sans: ["ui-rounded", "Hiragino Maru Gothic ProN", "Quicksand", "system-ui", "sans-serif"]
       },
       colors: {
         blush: "#f9d5e7",

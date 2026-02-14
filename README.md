@@ -1,35 +1,61 @@
 # Valentine Next.js Site
 
-핵심 파일:
-- `/Users/sionjeon/wybmv/app/page.tsx`
+A pink-themed, interactive Valentine page built with Next.js + Tailwind CSS.
 
-## 반영된 기능
-1. 시작 화면
-- Valentine countdown 표시
-- 이름 입력 + `Create Valentine Link` 버튼
-- 상단 네비게이션(`Main Page`, `Create Link`, `GitHub`)
+## Main Features
 
-2. 링크 생성 화면
-- 공유용 Valentine 링크 생성: `/?from=이름&id=랜덤ID`
-- `Copy` 버튼
-- `Preview Link` 버튼
+1. Landing flow
+- Valentine countdown timer
+- Name input + `Create Valentine Link`
+- Link format: `/?from=<name>&id=<randomId>`
 
-3. 받은 사람 화면 (`?from=...` 접속)
-- 상단 문구: `Hey there! {name} has a question for you...`
-- `No` 4단계 Tenor GIF
-- `Yes` 성공 Tenor GIF
-- `No` 클릭할수록 `Yes` 커짐, `No` 작아짐
-- 마지막 단계에서 `No` 버튼 도망
-- `Yes` 이후 `Restart` 버튼으로 다시하기
+2. Link ready page
+- Copyable Valentine link
+- `Preview Link` button
+- `Create Another Link` button
 
-## 실행
+3. Recipient page (`?from=...`)
+- Dynamic title: `Hey there! {name} has a question for you...`
+- 5-step `No` GIF sequence (Tenor embeds)
+- `Yes` success GIF
+- `No` clicks make `Yes` larger and `No` smaller
+- Final `No` stage makes the `No` button run away
+- `Yes` triggers full-screen fanfare effect
+- `Restart` + `Back To Main` actions
+
+4. Navigation
+- `Main Page`
+- `Create Link`
+- `GitHub`
+
+## Security Hardening
+
+The app includes practical client-side and platform-level protections:
+
+- Input sanitization for `name` values
+  - Removes unsafe characters
+  - Enforces a max length of 24
+- Query param safety
+  - `from` is sanitized before rendering
+- Security headers (via `next.config.js`)
+  - `Content-Security-Policy`
+  - `X-Content-Type-Options: nosniff`
+  - `X-Frame-Options: DENY`
+  - `Referrer-Policy: strict-origin-when-cross-origin`
+  - `Permissions-Policy` (camera/microphone/geolocation disabled)
+- Random share IDs generated with `crypto.getRandomValues` when available
+
+## Run Locally
+
 ```bash
 cd /Users/sionjeon/wybmv
 npm install
 npm run dev
 ```
-브라우저: `http://localhost:3000`
 
-## 참고
-- Tenor 임베드 스크립트를 사용하므로 인터넷 연결이 필요합니다.
-- GitHub 버튼 주소는 `/Users/sionjeon/wybmv/app/page.tsx`의 `githubUrl` 값을 수정하면 됩니다.
+Open: `http://localhost:3000`
+
+## Notes
+
+- Tenor embeds require internet access.
+- Update the GitHub button URL in `/Users/sionjeon/wybmv/app/page.tsx` if needed.

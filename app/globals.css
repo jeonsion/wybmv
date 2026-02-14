@@ -11,7 +11,7 @@ body {
 }
 
 .font-script {
-  font-family: var(--font-pacifico), cursive;
+  font-family: "Brush Script MT", "Snell Roundhand", "Segoe Script", cursive;
 }
 
 .tenor-gif-embed {
