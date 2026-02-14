@@ -252,7 +252,7 @@ export default function HomeClient({ initialFrom = "" }: HomeClientProps) {
             <div className="mt-3 flex flex-col gap-3 sm:flex-row">
               <input
                 value={nameInput}
-                onChange={(e) => setNameInput(sanitizeName(e.target.value))}
+                onChange={(e) => setNameInput(e.target.value.slice(0, maxNameLength))}
                 placeholder="Enter your name"
                 maxLength={maxNameLength}
                 className="w-full rounded-full border border-pink-200 bg-white px-5 py-3 text-base font-semibold text-pink-900 outline-none placeholder:text-pink-300 focus:border-pink-400"
@@ -439,7 +439,7 @@ export default function HomeClient({ initialFrom = "" }: HomeClientProps) {
         </div>
       )}
 
-      <Script src="https://tenor.com/embed.js" strategy="lazyOnload" />
+      <Script src="https://tenor.com/embed.js" strategy="afterInteractive" />
     </main>
   );
 }

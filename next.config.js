@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {
+    if (process.env.NODE_ENV !== "production") {
+      return [];
+    }
+
     return [
       {
         source: "/:path*",
@@ -24,7 +28,7 @@ const nextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' https://tenor.com; frame-src 'self' https://tenor.com https://*.tenor.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none';"
+              "default-src 'self'; script-src 'self' 'unsafe-inline' https://tenor.com https://*.tenor.com; frame-src 'self' https://tenor.com https://*.tenor.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; connect-src 'self' https://tenor.com https://*.tenor.com https://*.giphy.com; media-src 'self' https: data:; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none';"
           }
         ]
       }
