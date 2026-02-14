@@ -431,6 +431,12 @@ export default function HomeClient({ initialFrom = "" }: HomeClientProps) {
               <a href="/" className="rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-2 text-base font-bold text-white">
                 Back To Main
               </a>
+              <a
+                href="https://wybmv-iota.vercel.app/"
+                className="rounded-full border border-pink-300 bg-white px-6 py-2 text-base font-bold text-pink-700"
+              >
+                Create My Link
+              </a>
             </div>
           )}
         </section>
